@@ -55,7 +55,7 @@ $("#open").click(function () {
 				content.sign + "px;'>^1000" + content.from + "</p>"
 			],
 			typeSpeed: 100,
-			backSpeed: 50
+			backSpeed: 50,
 		});
 
 		$('#open').find("span").eq(0).css('background-position', "0 -150px");

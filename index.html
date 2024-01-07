@@ -40,7 +40,7 @@
 								<div class="front"></div>
 								<div class="back">
 									<div id="data">
-										<p class="letter"></p>
+										<p class="letter" id="data-p"></p>
 									</div>
 									<a id="close" href="#"></a>
 								</div>
@@ -72,4 +72,25 @@
 <script src="js/letter.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
 
+<script>
+var haoroomsId = document.getElementById('data-p');
+var MutationObserver = window.MutationObserver || window.webkitMutationObserver || window.MozMutationObserver;
+
+var recordHeight = 0;
+var mutationObserver = new MutationObserver(function (mutations) {
+  let height = window.getComputedStyle(haoroomsId).getPropertyValue('height');
+  if (height === recordHeight) {
+    return;
+  }
+  recordHeight = height;
+  // 之后更新外部容器等操作
+  document.getElementById('data').scrollTop = document.getElementById('data').scrollHeight; 
+})
+
+mutationObserver.observe(haoroomsId, {
+  childList: true, // 子节点的变动（新增、删除或者更改）
+  characterData: true, // 节点内容或节点文本的变动
+  subtree: true // 是否将观察器应用于该节点的所有后代节点
+})
+</script>
 </html>
